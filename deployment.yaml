@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: users-app
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      component: users-app
+  template:
+    metadata:
+      labels:
+        component: users-app
+    spec:
+      containers:
+        - name: client
+          image: geekhitesh/users-app
+          ports:
+            - containerPort: 8080
