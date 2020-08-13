@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: users-app
 spec:
-  replicas: 4
+  replicas: 1
   selector:
     matchLabels:
       component: users-app
@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
         - name: client
-          image: geekhitesh/users-app
+          image: 041266/users-app3
           ports:
             - containerPort: 8080
