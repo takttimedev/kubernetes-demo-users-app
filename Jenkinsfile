@@ -1,7 +1,5 @@
 pipeline {
-    agent {
-        label 'DOCKER'
-    }
+   
     environment{
             REG_SECRET = "reg-sec"
       		K8S_CLUSTER_URL = "https://172.31.62.210:6443"
