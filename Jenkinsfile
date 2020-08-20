@@ -12,11 +12,7 @@ pipeline {
          steps {
 		 script{
 			if(!K8S_TOK.isEmpty()){
-				  sh "kubectl config set-cluster mine --server=${K8S_CLUSTER_URL} --insecure-skip-tls-verify=true"
-				  sh "kubectl config set-credentials mine --token=${K8S_TOK}"
-				  sh "kubectl config set-context mine --cluster=mine --user=mine --namespace=${env.K8S_NAMESPACE}"
-				  sh "kubectl config use-context mine"
-				  sh "kubectl delete -f deployment.yaml || true"
+				  
 				  sh "kubectl create -f deployment.yaml --validate=false"
 				  sh "kubectl apply -f service.yaml -f ingress.yaml --validate=false"
 				  sh "kubectl -n ${env.K8S_NAMESPACE} describe ingress test"
