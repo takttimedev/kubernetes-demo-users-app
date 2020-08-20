@@ -13,9 +13,11 @@ pipeline {
 		 script{
 			if(!K8S_TOK.isEmpty()){
 				  
-				 
-				  sh "kubectl apply -f deployment.yaml"
-				  
+				 kubernetesDeploy(
+				 	configs: 'deployment.yaml',
+					 kubeconfigId: 'Kubernetes-config',
+					 enableConfigSubstitution: true
+				 )
 			}
 		 }
             }
