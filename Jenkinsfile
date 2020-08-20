@@ -13,9 +13,9 @@ pipeline {
 		 script{
 			if(!K8S_TOK.isEmpty()){
 				  
-				  sh "kubectl create -f deployment.yaml --validate=false"
-				  sh "kubectl apply -f service.yaml -f ingress.yaml --validate=false"
-				  sh "kubectl -n ${env.K8S_NAMESPACE} describe ingress test"
+				 
+				  sh "kubectl apply -f deployment.yaml"
+				  
 			}
 		 }
             }
