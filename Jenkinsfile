@@ -5,6 +5,7 @@ pipeline{
          K8S_JOB_NAME = ""
          K8S_BUILD_NUMBER = ""
     }
+	agent any
 	stages{
 		stage("Git clone"){
 			steps{
