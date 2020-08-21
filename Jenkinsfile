@@ -54,6 +54,7 @@ pipeline{
 					echo "env.K8S_JOB_NAME"
 					echo "env.K8S_BUILD_NUMBER"
 					sh "envsubst < deployment.yaml > deployment.yaml"
+					sh "cat deployment.yaml"
 					sh "kubectl delete -f deployment.yaml || true"
 					sh "kubectl create -f deployment.yaml --validate=false"
 					sh "kubectl apply -f service-nodeport.yaml --validate=false"   
