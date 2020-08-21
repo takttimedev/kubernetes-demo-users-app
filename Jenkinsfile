@@ -49,8 +49,8 @@ pipeline{
 		stage("K8S Push") {
 			steps{
 				script{
-					echo env.K8S_DOCKER_HUB_USER_ID
-					echo "env.K8S_DOCKER_HUB_PASSWORD"
+					echo "${K8S_DOCKER_HUB_USER_ID}"
+					echo "${K8S_DOCKER_HUB_PASSWORD}"
 					echo "env.K8S_JOB_NAME"
 					echo "env.K8S_BUILD_NUMBER"
 					sh "env envsubst < deployment.tmpl > deployment.yaml"
