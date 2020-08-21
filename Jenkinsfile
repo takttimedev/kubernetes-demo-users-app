@@ -1,9 +1,9 @@
 pipeline{
     environment{
-        // K8S_DOCKER_HUB_USER_ID = ""
-        // K8S_DOCKER_HUB_PASSWORD = ""
-        // K8S_JOB_NAME = ""
-        // K8S_BUILD_NUMBER = ""
+         K8S_DOCKER_HUB_USER_ID = ""
+         K8S_DOCKER_HUB_PASSWORD = ""
+         K8S_JOB_NAME = ""
+         K8S_BUILD_NUMBER = ""
     }
 	stages{
 		stage("Git clone"){
