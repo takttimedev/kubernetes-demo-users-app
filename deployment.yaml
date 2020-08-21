@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
         - name: client
-          image: 041266/users-app3
+          image: 041266/app-users
           ports:
             - containerPort: 8080
