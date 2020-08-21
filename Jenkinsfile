@@ -1,4 +1,5 @@
 pipeline{
+	agent any
     environment{
         // K8S_DOCKER_HUB_USER_ID = ""
         // K8S_DOCKER_HUB_PASSWORD = ""
