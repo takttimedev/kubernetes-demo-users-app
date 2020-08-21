@@ -49,10 +49,10 @@ pipeline{
 		stage("K8S Push") {
 			steps{
 				script{
-					echo "${K8S_DOCKER_HUB_USER_ID}"
-					echo "${K8S_DOCKER_HUB_PASSWORD}"
-					echo "${K8S_JOB_NAME}"
-					echo "${K8S_BUILD_NUMBER}"
+					echo "env.K8S_DOCKER_HUB_USER_ID"
+					echo "env.K8S_DOCKER_HUB_PASSWORD"
+					echo "env.K8S_JOB_NAME"
+					echo "env.K8S_BUILD_NUMBER"
 					sh "kubectl delete -f deployment.yaml || true"
 					sh "kubectl create -f deployment.yaml --validate=false"
 					sh "kubectl apply -f service-nodeport.yaml --validate=false"   
