@@ -6,6 +6,7 @@ pipeline{
         // K8S_JOB_NAME = ""
         // K8S_BUILD_NUMBER = ""
     }
+stages{
     stage("Git clone"){
         git credentialsId: 'GitHub-takttimedev', url: 'https://github.com/takttimedev/kubernetes-demo-users-app.git'
     }    
@@ -38,4 +39,5 @@ pipeline{
 	sh "kubectl create -f deployment.yaml --validate=false"
 	sh "kubectl apply -f service-nodeport.yaml --validate=false"          
     }
+}
 }
