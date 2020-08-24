@@ -11,6 +11,10 @@ pipeline{
 			steps{
 				script{
 					def stages = "${Stage_selection}".split(',')
+					for (String stage:stages){
+						echo "${stage}"
+					}
+					
 				}
 			}
 		}
