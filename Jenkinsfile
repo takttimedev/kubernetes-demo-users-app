@@ -1,6 +1,6 @@
 pipeline{
     environment{
-         K8S_DOCKER_HUB_USER_ID = ""
+        // K8S_DOCKER_HUB_USER_ID = ""
          K8S_DOCKER_HUB_PASSWORD = ""
          K8S_JOB_NAME = ""
          K8S_BUILD_NUMBER = ""
@@ -27,7 +27,7 @@ pipeline{
 			steps{
 				script{
 					withCredentials([usernamePassword(credentialsId: 'dockerhub-041266', passwordVariable: 'DOCKER_HUB_PASSWORD', usernameVariable: 'DOCKER_HUB_USER_ID')]) {
-						K8S_DOCKER_HUB_USER_ID = "${DOCKER_HUB_USER_ID}"
+						env.K8S_DOCKER_HUB_USER_ID = "${DOCKER_HUB_USER_ID}"
 						K8S_DOCKER_HUB_PASSWORD = "${DOCKER_HUB_PASSWORD}"
 						env.K8S_JOB_NAME = "${JOB_NAME}"
 						env.K8S_BUILD_NUMBER = "${BUILD_NUMBER}"
@@ -50,6 +50,7 @@ pipeline{
 			steps{
 				script{
 					echo "${K8S_DOCKER_HUB_USER_ID}"
+					echo "Hi"
 					echo "${K8S_DOCKER_HUB_PASSWORD}"
 					echo "env.K8S_JOB_NAME"
 					echo "env.K8S_BUILD_NUMBER"
