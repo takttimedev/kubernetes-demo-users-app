@@ -21,10 +21,10 @@ pipeline{
 		stage("Git Clone"){
 			steps{
 				script{
-					echo "${GIT_URL}"
+					echo "${APPL_URL}"
 					cleanWs()
 					if("${selectedStages}".contains("Git Clone")){
-						git credentialsId: 'GitHub-takttimedev', url: "${GIT_URL}"
+						git credentialsId: 'GitHub-takttimedev', url: "${APPL_URL}"
 					}
 					else{
 						echo "Git Clone Skipped"
