@@ -10,7 +10,7 @@ pipeline{
 		stage("Git clone"){
 			steps{
 				script{
-					git credentialsId: 'GitHub-takttimedev', url: 'https://github.com/takttimedev/kubernetes-demo-users-app.git'
+					git credentialsId: 'GitHub-takttimedev', url: "${GIT_URL}"
 				}
 			}
 		}    
