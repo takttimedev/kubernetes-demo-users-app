@@ -7,6 +7,13 @@ pipeline{
     }
 	agent any
 	stages{
+		stage('Stage selection'){
+			steps{
+				script{
+					def stages = "${Stage_selection}".split(',')
+				}
+			}
+		}
 		stage("Git clone"){
 			steps{
 				script{
