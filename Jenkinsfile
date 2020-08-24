@@ -18,7 +18,20 @@ pipeline{
 				}
 			}
 		}
-		
+		stage("Git Clone"){
+			steps{
+				script{
+					echo "${GIT_URL}"
+					cleanWs()
+					if("${selectedStages}".contains("Git Clone")){
+						git credentialsId: 'GitHub-takttimedev', url: "${GIT_URL}"
+					}
+					else{
+						echo "Git Clone Skipped"
+					}
+				}
+			}
+		}   
 		stage("Maven Build"){
 			steps{
 				script{
@@ -33,19 +46,7 @@ pipeline{
 				}
 			}
 		}   
-		stage("Git Clone"){
-			steps{
-				script{
-					echo "${GIT_URL}"
-					if("${selectedStages}".contains("Git Clone")){
-						git credentialsId: 'GitHub-takttimedev', url: "${GIT_URL}"
-					}
-					else{
-						echo "Git Clone Skipped"
-					}
-				}
-			}
-		}    
+		 
 		stage("Docker Build"){
 			steps{
 				script{
