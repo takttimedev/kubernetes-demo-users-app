@@ -10,7 +10,7 @@ pipeline{
 		stage('Stage selection'){
 			steps{
 				script{
-					def selectedStages = "${Stage_selection}".split(',')
+					selectedStages = "${Stage_selection}".split(',')
 					for (String individualStage:selectedStages){
 						echo "Selected Stage : ${individualStage}"
 					}
