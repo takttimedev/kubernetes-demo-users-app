@@ -10,9 +10,9 @@ pipeline{
 		stage('Stage selection'){
 			steps{
 				script{
-					def stages = "${Stage_selection}".split(',')
-					for (String stage:stages){
-						echo "${stage}"
+					def selectedStages = "${Stage_selection}".split(',')
+					for (String individualStage:selectedStages){
+						echo "Selected Stage : ${individualStage}"
 					}
 					
 				}
@@ -21,7 +21,7 @@ pipeline{
 		stage("Git Clone"){
 			steps{
 				script{
-					if(stages.contains("Git Clone")){
+					if("${selectedStages}".contains("Git Clone")){
 						git credentialsId: 'GitHub-takttimedev', url: "${GIT_URL}"
 					}
 					else{
@@ -33,7 +33,7 @@ pipeline{
 		stage("Maven Build"){
 			steps{
 				script{
-					if(stages.contains("Maven Build")){
+					if("${selectedStages}".contains("Maven Build")){
 						def mavenHome = tool name: "M3", type: "maven" 
 						def mavenCMD = "${mavenHome}/bin/mvn"
 						sh "${mavenCMD} clean package"
@@ -47,7 +47,7 @@ pipeline{
 		stage("Docker Build"){
 			steps{
 				script{
-					if(stages.contains("Docker Build")){
+					if("${selectedStages}".contains("Docker Build")){
 						withCredentials([usernamePassword(credentialsId: 'dockerhub-041266', passwordVariable: 'DOCKER_HUB_PASSWORD', usernameVariable: 'DOCKER_HUB_USER_ID')]) {
 							env.K8S_DOCKER_HUB_USER_ID = "${DOCKER_HUB_USER_ID}"
 							//K8S_DOCKER_HUB_PASSWORD = "${DOCKER_HUB_PASSWORD}"
@@ -65,7 +65,7 @@ pipeline{
 		stage("Docker Push"){
 			steps{
 				script{
-					if(stages.contains("Docker Push")){
+					if("${selectedStages}".contains("Docker Push")){
 						   withCredentials([usernamePassword(credentialsId: 'dockerhub-041266', passwordVariable: 'DOCKER_HUB_PASSWORD', usernameVariable: 'DOCKER_HUB_USER_ID')]) {
 								sh "docker login -u ${DOCKER_HUB_USER_ID} -p ${DOCKER_HUB_PASSWORD}"
 								sh "docker push ${K8S_DOCKER_HUB_USER_ID}/${JOB_NAME}:${BUILD_NUMBER}"
@@ -80,7 +80,7 @@ pipeline{
 		stage("K8S Push") {
 			steps{
 				script{
-					if(stages.contains("K8S Push")){
+					if("${selectedStages}".contains("K8S Push")){
 						echo "${K8S_DOCKER_HUB_USER_ID}"
 						//echo "${K8S_DOCKER_HUB_PASSWORD}"
 						echo "${K8S_JOB_NAME}"
