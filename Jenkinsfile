@@ -36,6 +36,7 @@ pipeline{
 		stage("Git Clone"){
 			steps{
 				script{
+					echo "${GIT_URL}"
 					if("${selectedStages}".contains("Git Clone")){
 						git credentialsId: 'GitHub-takttimedev', url: "${GIT_URL}"
 					}
