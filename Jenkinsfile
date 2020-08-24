@@ -53,7 +53,7 @@ pipeline{
 					//echo "${K8S_DOCKER_HUB_PASSWORD}"
 					echo "${K8S_JOB_NAME}"
 					echo "${K8S_BUILD_NUMBER}"
-					//sh "export K8S_DOCKER_HUB_USER_ID"
+					sh "export K8S_DOCKER_HUB_USER_ID"
 					sh "envsubst < deployment.yaml > deployment.yaml"
 					sh "kubectl delete -f deployment.yaml || true"
 					sh "kubectl create -f deployment.yaml --validate=false"
