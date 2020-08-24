@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
         - name: client
-          image: ${K8S_DOCKER_HUB_USER_ID}/app-users
+          image: ${K8S_DOCKER_HUB_USER_ID}/${JOB_NAME}:${BUILD_NUMBER}
           ports:
             - containerPort: 8080
