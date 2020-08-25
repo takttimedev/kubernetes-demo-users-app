@@ -11,6 +11,7 @@ public class KubernetesDemoApplicationTests {
 
 	@Test
 	public void contextLoads() {
+		System.out.println("HI");
 	}
 
 }
