@@ -33,7 +33,7 @@ pipeline{
 			steps{
 				script{
 					
-						withCredentials([usernamePassword(credentialsId: 'GitLab', passwordVariable: 'DOCKER_HUB_PASSWORD', usernameVariable: 'DOCKER_HUB_USER_ID')]) {
+						withCredentials([usernamePassword(credentialsId: 'DOCKER_HUB_CREDENTIALS', passwordVariable: 'DOCKER_HUB_PASSWORD', usernameVariable: 'DOCKER_HUB_USER_ID')]) {
 							
 							env.K8S_DOCKER_HUB_USER_ID = "${DOCKER_HUB_USER_ID}"
 							env.K8S_JOB_NAME = "${JOB_NAME}"
@@ -47,7 +47,7 @@ pipeline{
 		stage("Docker Push"){
 			steps{
 				script{
-					withCredentials([usernamePassword(credentialsId: 'GitLab', passwordVariable: 'DOCKER_HUB_PASSWORD', usernameVariable: 'DOCKER_HUB_USER_ID')]) {
+					withCredentials([usernamePassword(credentialsId: 'DOCKER_HUB_CREDENTIALS', passwordVariable: 'DOCKER_HUB_PASSWORD', usernameVariable: 'DOCKER_HUB_USER_ID')]) {
 								sh "docker login -u ${DOCKER_HUB_USER_ID} -p ${DOCKER_HUB_PASSWORD}"
 								sh "docker push ${K8S_DOCKER_HUB_USER_ID}/${JOB_NAME}:${BUILD_NUMBER}"
 					}
