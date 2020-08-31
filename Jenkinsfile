@@ -3,20 +3,20 @@ pipeline{
 	agent any
 	stages{
 		
-		//stage("Git Clone"){
-		//	steps{
-		//		script{
-		//			echo "${APPL_URL}"
-		//			cleanWs()
+		stage("Git Clone"){
+			steps{
+				script{
+					//echo "${APPL_URL}"
+					cleanWs()
 					//if("${selectedStages}".contains("Git Clone")){
-		//				git credentialsId: 'GitHub-takttimedev', url: "https://github.com/takttimedev/kubernetes-demo-users-app.git"
+						git credentialsId: 'GitHub-takttimedev', url: "https://github.com/takttimedev/kubernetes-demo-users-app.git"
 					//}
 					//else{
 					//	echo "Git Clone Skipped"
 					//}
-		//		}
-		//	}
-		//}   
+				}
+			}
+		}   
 		stage("Maven Build"){
 			steps{
 				script{
